@@ -19,18 +19,17 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 5373 $ $Date:: 2016-12-28 #$ $Author: serge $
+// $Revision: 5388 $ $Date:: 2016-12-29 #$ $Author: serge $
 
 #ifndef SIMPLE_VOIP_I_SIMPLE_VOIP_WRAPPER_H
 #define SIMPLE_VOIP_I_SIMPLE_VOIP_WRAPPER_H
 
-#include "config.h"         // Config
-#include "i_simple_voip.h"  // ISimpleVoip
+#include "config.h"                 // Config
+#include "i_simple_voip.h"          // ISimpleVoip
+#include "i_simple_voip_callback.h" // ISimpleVoipCallback
 
 namespace simple_voip
 {
-
-class ISimpleVoipCallback;
 
 class ISimpleVoipWrapper: public ISimpleVoip
 {
