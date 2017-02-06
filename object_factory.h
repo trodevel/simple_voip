@@ -20,7 +20,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
 
-// $Revision: 5555 $ $Date:: 2017-01-16 #$ $Author: serge $
+// $Revision: 5689 $ $Date:: 2017-02-06 #$ $Author: serge $
 
 #ifndef SIMPLE_VOIP_OBJECT_FACTORY_H
 #define SIMPLE_VOIP_OBJECT_FACTORY_H
@@ -31,9 +31,9 @@ namespace simple_voip
 {
 
 template <class T>
-void init_job_id( T * obj, uint32_t job_id )
+void init_req_id( T * obj, uint32_t req_id )
 {
-    obj->job_id = job_id;
+    obj->req_id = req_id;
 }
 
 template <class T>
@@ -52,53 +52,53 @@ T *create_message_t( uint32_t call_id )
     return res;
 }
 
-inline InitiateCallRequest *create_initiate_call_request( uint32_t job_id, const std::string & party )
+inline InitiateCallRequest *create_initiate_call_request( uint32_t req_id, const std::string & party )
 {
     auto * res = new InitiateCallRequest;
 
-    init_job_id( res, job_id );
+    init_req_id( res, req_id );
 
     res->party      = party;
 
     return res;
 }
 
-inline InitiateCallResponse *create_initiate_call_response( uint32_t job_id, uint32_t call_id )
+inline InitiateCallResponse *create_initiate_call_response( uint32_t req_id, uint32_t call_id )
 {
     auto * res = new InitiateCallResponse;
 
-    init_job_id( res, job_id );
+    init_req_id( res, req_id );
 
     res->call_id    = call_id;
 
     return res;
 }
 
-inline DropRequest *create_drop_request( uint32_t job_id, uint32_t call_id )
+inline DropRequest *create_drop_request( uint32_t req_id, uint32_t call_id )
 {
     auto * res = new DropRequest;
 
-    init_job_id( res, job_id );
+    init_req_id( res, req_id );
 
     res->call_id    = call_id;
 
     return res;
 }
 
-inline DropResponse *create_drop_response( uint32_t job_id )
+inline DropResponse *create_drop_response( uint32_t req_id )
 {
     auto * res = new DropResponse;
 
-    init_job_id( res, job_id );
+    init_req_id( res, req_id );
 
     return res;
 }
 
-inline PlayFileRequest *create_play_file_request( uint32_t job_id, uint32_t call_id, const std::string & filename )
+inline PlayFileRequest *create_play_file_request( uint32_t req_id, uint32_t call_id, const std::string & filename )
 {
     auto * res = new PlayFileRequest;
 
-    init_job_id( res, job_id );
+    init_req_id( res, req_id );
 
     res->call_id    = call_id;
     res->filename   = filename;
@@ -106,31 +106,31 @@ inline PlayFileRequest *create_play_file_request( uint32_t job_id, uint32_t call
     return res;
 }
 
-inline PlayFileResponse *create_play_file_response( uint32_t job_id )
+inline PlayFileResponse *create_play_file_response( uint32_t req_id )
 {
     auto * res = new PlayFileResponse;
 
-    init_job_id( res, job_id );
+    init_req_id( res, req_id );
 
     return res;
 }
 
-inline PlayFileStopRequest *create_play_file_stop_request( uint32_t job_id, uint32_t call_id )
+inline PlayFileStopRequest *create_play_file_stop_request( uint32_t req_id, uint32_t call_id )
 {
     auto * res = new PlayFileStopRequest;
 
-    init_job_id( res, job_id );
+    init_req_id( res, req_id );
 
     res->call_id    = call_id;
 
     return res;
 }
 
-inline RecordFileRequest *create_record_file_request( uint32_t job_id, uint32_t call_id, const std::string & filename )
+inline RecordFileRequest *create_record_file_request( uint32_t req_id, uint32_t call_id, const std::string & filename )
 {
     auto * res = new RecordFileRequest;
 
-    init_job_id( res, job_id );
+    init_req_id( res, req_id );
 
     res->call_id    = call_id;
     res->filename   = filename;
@@ -138,20 +138,20 @@ inline RecordFileRequest *create_record_file_request( uint32_t job_id, uint32_t 
     return res;
 }
 
-inline RecordFileResponse *create_record_file_response( uint32_t job_id )
+inline RecordFileResponse *create_record_file_response( uint32_t req_id )
 {
     auto * res = new RecordFileResponse;
 
-    init_job_id( res, job_id );
+    init_req_id( res, req_id );
 
     return res;
 }
 
-inline ErrorResponse *create_error_response( uint32_t job_id, uint32_t errorcode, const std::string & descr )
+inline ErrorResponse *create_error_response( uint32_t req_id, uint32_t errorcode, const std::string & descr )
 {
     auto * res = new ErrorResponse;
 
-    init_job_id( res, job_id );
+    init_req_id( res, req_id );
 
     res->errorcode  = errorcode;
     res->descr      = descr;
@@ -159,11 +159,11 @@ inline ErrorResponse *create_error_response( uint32_t job_id, uint32_t errorcode
     return res;
 }
 
-inline RejectResponse *create_reject_response( uint32_t job_id, uint32_t errorcode, const std::string & descr )
+inline RejectResponse *create_reject_response( uint32_t req_id, uint32_t errorcode, const std::string & descr )
 {
     auto * res = new RejectResponse;
 
-    init_job_id( res, job_id );
+    init_req_id( res, req_id );
 
     res->errorcode  = errorcode;
     res->descr      = descr;

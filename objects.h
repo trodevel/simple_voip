@@ -20,7 +20,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
 
-// $Revision: 5373 $ $Date:: 2016-12-28 #$ $Author: serge $
+// $Revision: 5689 $ $Date:: 2017-02-06 #$ $Author: serge $
 
 #ifndef SIMPLE_VOIP_OBJECTS_H
 #define SIMPLE_VOIP_OBJECTS_H
@@ -48,12 +48,12 @@ struct CallbackObject: public IObject
 
 struct RequestObject: public ForwardObject
 {
-    uint32_t        job_id;
+    uint32_t        req_id;
 };
 
 struct ResponseObject: public CallbackObject
 {
-    uint32_t        job_id;
+    uint32_t        req_id;
 };
 
 // ******************* ERRORS *******************
