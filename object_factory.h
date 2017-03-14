@@ -20,7 +20,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
 
-// $Revision: 5689 $ $Date:: 2017-02-06 #$ $Author: serge $
+// $Revision: 6006 $ $Date:: 2017-03-13 #$ $Author: serge $
 
 #ifndef SIMPLE_VOIP_OBJECT_FACTORY_H
 #define SIMPLE_VOIP_OBJECT_FACTORY_H
@@ -122,6 +122,15 @@ inline PlayFileStopRequest *create_play_file_stop_request( uint32_t req_id, uint
     init_req_id( res, req_id );
 
     res->call_id    = call_id;
+
+    return res;
+}
+
+inline PlayFileStopResponse *create_play_file_stop_response( uint32_t req_id )
+{
+    auto * res = new PlayFileStopResponse;
+
+    init_req_id( res, req_id );
 
     return res;
 }
