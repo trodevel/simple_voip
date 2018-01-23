@@ -1,8 +1,8 @@
 /*
 
-Simple VOIP config.
+String Helper. Provides to_string() function.
 
-Copyright (C) 2016 Sergey Kolevatov
+Copyright (C) 2018 Sergey Kolevatov
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -19,30 +19,17 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 5373 $ $Date:: 2016-12-28 #$ $Author: serge $
+// $Revision: 8606 $ $Date:: 2018-01-23 #$ $Author: serge $
 
-#ifndef SIMPLE_VOIP_CONFIG_H
-#define SIMPLE_VOIP_CONFIG_H
-
-#include <string>                   // std::string
-#include <cstdint>                  // uint32_t
+#include "objects.h"        // Failed
 
 namespace simple_voip
 {
 
-struct Config
+class StrHelper
 {
-    std::string     called_id;
-    std::string     username;
-    std::string     password;
-    std::string     host;
-    uint32_t        port;
-    uint32_t        relogin_pause; // pause in seconds before the next login attempt
-    uint32_t        connection_lost_timeout_sec;
-    uint32_t        ringing_timeout_sec;
-    std::string     agent_name;
+public:
+    static const std::string & to_string( simple_voip::Failed::type_e l );
 };
 
 } // namespace simple_voip
-
-#endif  // SIMPLE_VOIP_CONFIG_H
