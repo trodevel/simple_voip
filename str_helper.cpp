@@ -19,11 +19,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 */
 
-// $Revision: 8603 $ $Date:: 2018-01-23 #$ $Author: serge $
+// $Revision: 9360 $ $Date:: 2018-06-14 #$ $Author: serge $
 
 #include "str_helper.h"             // self
 
 #include <map>
+#include <typeinfo>
 
 namespace simple_voip
 {
@@ -53,6 +54,155 @@ const std::string & StrHelper::to_string( Failed::type_e l )
         return undef;
 
     return it->second;
+}
+
+std::ostream & StrHelper::write( std::ostream & os, const simple_voip::IObject & o )
+{
+    os << typeid( o ).name();
+
+    if( typeid( o ) == typeid( simple_voip::InitiateCallRequest ) )
+    {
+        auto & m = dynamic_cast<const simple_voip::InitiateCallRequest&>( o );
+
+        os << " " << m.req_id << " " << m.party;
+    }
+    else if( typeid( o ) == typeid( simple_voip::ErrorResponse ) )
+    {
+        auto & m = dynamic_cast<const simple_voip::ErrorResponse&>( o );
+
+        os << " " << m.req_id << " " << m.errorcode << " " << m.descr;
+    }
+    else if( typeid( o ) == typeid( simple_voip::RejectResponse ) )
+    {
+        auto & m = dynamic_cast<const simple_voip::RejectResponse&>( o );
+
+        os << " " << m.req_id << " " << m.errorcode << " " << m.descr;
+    }
+    else if( typeid( o ) == typeid( simple_voip::InitiateCallRequest ) )
+    {
+        auto & m = dynamic_cast<const simple_voip::InitiateCallRequest&>( o );
+
+        os << " " << m.req_id << " " << m.party;
+    }
+    else if( typeid( o ) == typeid( simple_voip::InitiateCallResponse ) )
+    {
+        auto & m = dynamic_cast<const simple_voip::InitiateCallResponse&>( o );
+
+        os << " " << m.req_id << " " << m.call_id;
+    }
+    else if( typeid( o ) == typeid( simple_voip::DropRequest ) )
+    {
+        auto & m = dynamic_cast<const simple_voip::DropRequest&>( o );
+
+        os << " " << m.req_id << " " << m.call_id;
+    }
+    else if( typeid( o ) == typeid( simple_voip::DropResponse ) )
+    {
+        auto & m = dynamic_cast<const simple_voip::DropResponse&>( o );
+
+        os << " " << m.req_id;
+    }
+    else if( typeid( o ) == typeid( simple_voip::PlayFileRequest ) )
+    {
+        auto & m = dynamic_cast<const simple_voip::PlayFileRequest&>( o );
+
+        os << " " << m.req_id << " " << m.call_id << " " << m.filename;
+    }
+    else if( typeid( o ) == typeid( simple_voip::PlayFileResponse ) )
+    {
+        auto & m = dynamic_cast<const simple_voip::PlayFileResponse&>( o );
+
+        os << " " << m.req_id;
+    }
+    else if( typeid( o ) == typeid( simple_voip::PlayFileStopRequest ) )
+    {
+        auto & m = dynamic_cast<const simple_voip::PlayFileStopRequest&>( o );
+
+        os << " " << m.req_id << " " << m.call_id;
+    }
+    else if( typeid( o ) == typeid( simple_voip::PlayFileStopResponse ) )
+    {
+        auto & m = dynamic_cast<const simple_voip::PlayFileStopResponse&>( o );
+
+        os << " " << m.req_id;
+    }
+    else if( typeid( o ) == typeid( simple_voip::RecordFileRequest ) )
+    {
+        auto & m = dynamic_cast<const simple_voip::RecordFileRequest&>( o );
+
+        os << " " << m.req_id << " " << m.call_id << " " << m.filename;
+    }
+    else if( typeid( o ) == typeid( simple_voip::RecordFileResponse ) )
+    {
+        auto & m = dynamic_cast<const simple_voip::RecordFileResponse&>( o );
+
+        os << " " << m.req_id;
+    }
+    else if( typeid( o ) == typeid( simple_voip::RecordFileStopRequest ) )
+    {
+        auto & m = dynamic_cast<const simple_voip::RecordFileStopRequest&>( o );
+
+        os << " " << m.req_id << " " << m.call_id;
+    }
+    else if( typeid( o ) == typeid( simple_voip::RecordFileStopResponse ) )
+    {
+        auto & m = dynamic_cast<const simple_voip::RecordFileStopResponse&>( o );
+
+        os << " " << m.req_id;
+    }
+    else if( typeid( o ) == typeid( simple_voip::Failed ) )
+    {
+        auto & m = dynamic_cast<const simple_voip::Failed&>( o );
+
+        os << " " << m.call_id << " " << to_string( m.type ) << " " << m.descr;
+    }
+    else if( typeid( o ) == typeid( simple_voip::Dialing ) )
+    {
+        auto & m = dynamic_cast<const simple_voip::Dialing&>( o );
+
+        os << " " << m.call_id;
+    }
+    else if( typeid( o ) == typeid( simple_voip::Ringing ) )
+    {
+        auto & m = dynamic_cast<const simple_voip::Ringing&>( o );
+
+        os << " " << m.call_id;
+    }
+    else if( typeid( o ) == typeid( simple_voip::Connected ) )
+    {
+        auto & m = dynamic_cast<const simple_voip::Connected&>( o );
+
+        os << " " << m.call_id;
+    }
+    else if( typeid( o ) == typeid( simple_voip::ConnectionLost ) )
+    {
+        auto & m = dynamic_cast<const simple_voip::ConnectionLost&>( o );
+
+        os << " " << m.call_id << " " << m.descr;
+    }
+    else if( typeid( o ) == typeid( simple_voip::CallDuration ) )
+    {
+        auto & m = dynamic_cast<const simple_voip::CallDuration&>( o );
+
+        os << " " << m.call_id << " " << m.t;
+    }
+    else if( typeid( o ) == typeid( simple_voip::DtmfTone ) )
+    {
+        auto & m = dynamic_cast<const simple_voip::DtmfTone&>( o );
+
+        os << " " << m.call_id << " " << int( m.tone );
+    }
+
+    return os;
+}
+
+const std::string StrHelper::to_string( const simple_voip::IObject & o )
+{
+    std::stringstream os;
+
+    write( os, o );
+
+    return os.str();
 }
 
 } // namespace simple_voip
