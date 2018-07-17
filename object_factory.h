@@ -20,7 +20,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
 
-// $Revision: 6031 $ $Date:: 2017-03-15 #$ $Author: serge $
+// $Revision: 9522 $ $Date:: 2018-07-17 #$ $Author: serge $
 
 #ifndef SIMPLE_VOIP_OBJECT_FACTORY_H
 #define SIMPLE_VOIP_OBJECT_FACTORY_H
@@ -150,6 +150,26 @@ inline RecordFileRequest *create_record_file_request( uint32_t req_id, uint32_t 
 inline RecordFileResponse *create_record_file_response( uint32_t req_id )
 {
     auto * res = new RecordFileResponse;
+
+    init_req_id( res, req_id );
+
+    return res;
+}
+
+inline RecordFileStopRequest *create_record_file_stop_request( uint32_t req_id, uint32_t call_id )
+{
+    auto * res = new RecordFileStopRequest;
+
+    init_req_id( res, req_id );
+
+    res->call_id    = call_id;
+
+    return res;
+}
+
+inline RecordFileStopResponse *create_record_file_stop_response( uint32_t req_id )
+{
+    auto * res = new RecordFileStopResponse;
 
     init_req_id( res, req_id );
 
